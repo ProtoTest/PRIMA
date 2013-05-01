@@ -17,6 +17,8 @@ import android.widget.TextView;
 public class RecordingActivity extends Activity {
 public TextView textView;
 
+public DeviceMonitor monitor;
+
 	@SuppressLint("NewApi")
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -24,12 +26,8 @@ public TextView textView;
 		setContentView(R.layout.activity_recording);
 		// Show the Up button in the action bar.
 		getActionBar().setDisplayHomeAsUpEnabled(true);
-		
-		textView = new TextView(this);
-		textView.setTextSize(20);
-
-		
-
+		monitor = new DeviceMonitor(this);
+		monitor.StartRecording();
 	}
 
 	@Override
@@ -61,7 +59,8 @@ public TextView textView;
 		//EditText editText = (EditText) findViewById(R.id.max_duration_time);
 		//String message = editText.getText().toString();
 		//intent.putExtra(EXTRA_MESSAGE, message);
-		
+		monitor.StopRecording();
+		GlobalData.monitor = monitor;
 		startActivity(intent);
 	}
 

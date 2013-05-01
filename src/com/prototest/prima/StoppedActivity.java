@@ -1,18 +1,18 @@
 package com.prototest.prima;
 
-import com.prototest.prima.R;
-
-import android.os.Bundle;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
+import android.os.Bundle;
+import android.support.v4.app.NavUtils;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
-import android.support.v4.app.NavUtils;
+import android.widget.TextView;
 
 public class StoppedActivity extends Activity {
+public TextView stats;
 
 	@SuppressLint("NewApi")
 	@Override
@@ -21,6 +21,8 @@ public class StoppedActivity extends Activity {
 		setContentView(R.layout.activity_stopped);
 		// Show the Up button in the action bar.
 		getActionBar().setDisplayHomeAsUpEnabled(true);
+		stats = (TextView) findViewById(R.id.battery_stats_text);  
+		stats.setText("Recorded " + GlobalData.monitor.num_ticks + " ticks");
 	}
 
 	@Override
@@ -49,10 +51,6 @@ public class StoppedActivity extends Activity {
 	
 	public void viewResults(View view) {
 		Intent intent = new Intent(this, ViewReportActivity.class);
-		//EditText editText = (EditText) findViewById(R.id.max_duration_time);
-		//String message = editText.getText().toString();
-		//intent.putExtra(EXTRA_MESSAGE, message);
-		
 		startActivity(intent);
 	}
 	public void startRecording(View view) {

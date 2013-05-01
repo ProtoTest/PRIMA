@@ -26,49 +26,8 @@ public final static String EXTRA_MESSAGE = "com.prototest.prima.MESSAGE";
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
-		
-		
 
-		
 	}
-	
-	@SuppressLint("NewApi")
-	private String ReadCPUinfo()
-	{
-	ProcessBuilder cmd;
-	StringBuffer strMemory = new StringBuffer();
-	//final ActivityManager activityManager =(ActivityManager) getSystemService(Context.ACTIVITY_SERVICE);
-	ActivityManager actvityManager = (ActivityManager) this.getSystemService(  
-	ACTIVITY_SERVICE );
-	ActivityManager.MemoryInfo mInfo = new ActivityManager.MemoryInfo ();
-	actvityManager.getMemoryInfo( mInfo );
-	strMemory.append("Available Memory : ");
-	strMemory.append(mInfo.availMem/1048576L + " mb");
-	strMemory.append("\n");
-	strMemory.append("Total Memory : ");
-	strMemory.append(mInfo.totalMem/1048576L + " mb");
-	strMemory.append("\n");
-	strMemory.append("\n");
-	String result=strMemory.toString();
-	try{
-	String[] args = {"/system/bin/cat", "/proc/meminfo"};
-	cmd = new ProcessBuilder(args);
-	Process process = cmd.start();
-	InputStream in = process.getInputStream();
-	byte[] re = new byte[1024];
-	while(in.read(re) != -1){
-	System.out.println("itthhe   ====  ---   >>>>    "+new String(re));
-	result = result + new String(re);
-	}
-	in.close();
-	} catch(IOException ex){
-	ex.printStackTrace();
-	}
-	return result;
-	}
-
-	
-	
 
 	
 	@Override

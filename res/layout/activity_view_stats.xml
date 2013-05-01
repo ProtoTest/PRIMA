@@ -14,7 +14,6 @@
         android:layout_marginTop="18dp"
         android:text="View Device Stats"
         android:textAppearance="?android:attr/textAppearanceLarge" />
-    
 
     <TextView
         android:id="@+id/textView2"

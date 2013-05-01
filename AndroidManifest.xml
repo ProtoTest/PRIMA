@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.myfirstapp"
+    package="com.prototest.prima"
     android:versionCode="1"
     android:versionName="1.0" >
 
@@ -14,7 +14,7 @@
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
         <activity
-            android:name="com.example.myfirstapp.MainActivity"
+            android:name="com.prototest.prima.MainActivity"
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -23,52 +23,52 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.example.myfirstapp.DisplayMessageActivity"
+            android:name="com.prototest.prima.DisplayMessageActivity"
             android:label="@string/title_activity_display_message"
-            android:parentActivityName="com.example.myfirstapp.MainActivity" >
+            android:parentActivityName="com.prototest.prima.MainActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.example.myfirstapp.MainActivity" />
+                android:value="com.prototest.prima.MainActivity" />
         </activity>
         <activity
-            android:name="com.example.myfirstapp.RecordingActivity"
+            android:name="com.prototest.prima.RecordingActivity"
             android:label="@string/title_activity_recording"
-            android:parentActivityName="com.example.myfirstapp.MainActivity" >
+            android:parentActivityName="com.prototest.prima.MainActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.example.myfirstapp.MainActivity" />
+                android:value="com.prototest.prima.MainActivity" />
         </activity>
         <activity
-            android:name="com.example.myfirstapp.StoppedActivity"
+            android:name="com.prototest.prima.StoppedActivity"
             android:label="@string/title_activity_stopped"
-            android:parentActivityName="com.example.myfirstapp.RecordingActivity" >
+            android:parentActivityName="com.prototest.prima.RecordingActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.example.myfirstapp.RecordingActivity" />
+                android:value="com.prototest.prima.RecordingActivity" />
         </activity>
         <activity
-            android:name="com.example.myfirstapp.ViewReportActivity"
+            android:name="com.prototest.prima.ViewReportActivity"
             android:label="@string/title_activity_view_report"
-            android:parentActivityName="com.example.myfirstapp.StoppedActivity" >
+            android:parentActivityName="com.prototest.prima.StoppedActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.example.myfirstapp.StoppedActivity" />
+                android:value="com.prototest.prima.StoppedActivity" />
         </activity>
         <activity
-            android:name="com.example.myfirstapp.StartRecordingActivity"
+            android:name="com.prototest.prima.StartRecordingActivity"
             android:label="@string/title_activity_start_recording"
-            android:parentActivityName="com.example.myfirstapp.MainActivity" >
+            android:parentActivityName="com.prototest.prima.MainActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.example.myfirstapp.MainActivity" />
+                android:value="com.prototest.prima.MainActivity" />
         </activity>
         <activity
-            android:name="com.example.myfirstapp.ViewStatsActivity"
+            android:name="com.prototest.prima.ViewStatsActivity"           
             android:label="@string/title_activity_view_stats"
-            android:parentActivityName="com.example.myfirstapp.MainActivity" >
+            android:parentActivityName="com.prototest.prima.MainActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.example.myfirstapp.MainActivity" />
+                android:value="com.prototest.prima.MainActivity" />
         </activity>
     </application>
 

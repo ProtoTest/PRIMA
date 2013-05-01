@@ -1,0 +1,59 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center_horizontal|left"
+    android:orientation="vertical"
+    tools:context=".StartRecordingActivity" >
+
+    <EditText
+        android:id="@+id/resolution_ticks"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:ems="10"
+        android:inputType="number"
+        android:text="@string/Resolution_text" >
+
+        <requestFocus />
+    </EditText>
+
+    <EditText
+        android:id="@+id/max_duration_time"
+        android:layout_width="252dp"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:ems="10"
+        android:inputType="number"
+        android:text="@string/max_run_time" />
+
+    <CheckBox
+        android:id="@+id/record_battery_checkbox"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:text="Record Battery" />
+
+    <CheckBox
+        android:id="@+id/record_cpu_checkbox"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:text="Record CPU" />
+
+    <CheckBox
+        android:id="@+id/record_memory_checkbox"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:text="Record Memory" />
+
+    <Button
+        android:id="@+id/button1"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:text="Start Recording" 
+        android:onClick="startRecording"/>
+
+</LinearLayout>

@@ -39,10 +39,6 @@ public final static String EXTRA_MESSAGE = "com.prototest.prima.MESSAGE";
 	
 	public void startRecording(View view) {
 		Intent intent = new Intent(this, RecordingActivity.class);
-		//EditText editText = (EditText) findViewById(R.id.max_duration_time);
-		//String message = editText.getText().toString();
-		//intent.putExtra(EXTRA_MESSAGE, message);
-		
 		startActivity(intent);
 	}
 	

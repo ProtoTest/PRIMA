@@ -26,9 +26,17 @@ public DeviceMonitor monitor;
 		setContentView(R.layout.activity_recording);
 		// Show the Up button in the action bar.
 		getActionBar().setDisplayHomeAsUpEnabled(true);
+		
 		monitor = new DeviceMonitor(this);
-		monitor.StartRecording();
+
 	}
+	
+	@Override
+		protected void onDestroy() {
+			// TODO Auto-generated method stub
+			super.onDestroy();
+			monitor.StopRecording();
+		}
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
@@ -53,15 +61,15 @@ public DeviceMonitor monitor;
 		}
 		return super.onOptionsItemSelected(item);
 	}
+	public void startRecording(View view){
+		GlobalData.monitor=monitor;
+		monitor.StartRecording();
+	}
 	
 	public void stopRecording(View view) {
-		Intent intent = new Intent(this, StoppedActivity.class);
-		//EditText editText = (EditText) findViewById(R.id.max_duration_time);
-		//String message = editText.getText().toString();
-		//intent.putExtra(EXTRA_MESSAGE, message);
 		monitor.StopRecording();
 		GlobalData.monitor = monitor;
-		startActivity(intent);
+		startActivity(new Intent(this, StoppedActivity.class));
 	}
 
 }

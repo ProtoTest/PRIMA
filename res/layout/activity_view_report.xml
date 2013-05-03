@@ -1,27 +1,30 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/statslayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ViewReportActivity" >
+    android:orientation="vertical"
+    tools:context=".ViewReportActivity" 
+    android:background="#ff000000">
 
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentRight="true"
         android:orientation="vertical" >
-
     </LinearLayout>
 
     <TextView
-        android:id="@+id/textView1"
+        android:id="@+id/view_report_stats_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
         android:layout_marginTop="78dp"
         android:text="View Results"
         android:textAppearance="?android:attr/textAppearanceLarge" />
 
-</RelativeLayout>
+    <LinearLayout
+        android:id="@+id/view_report_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+    </LinearLayout>
+
+</LinearLayout>

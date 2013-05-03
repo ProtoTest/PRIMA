@@ -15,6 +15,10 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.BatteryManager;
+import android.os.Handler;
+import android.os.Looper;
+import android.webkit.WebView.FindListener;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.prototest.prima.DataStructures.BatteryStats;
@@ -23,9 +27,11 @@ import com.prototest.prima.DataStructures.ProcessorStats;
 
 public class DeviceMonitor {
 	
-	public int max_duration_sec = 6000;
+	public int max_duration_ms = 30000;
 	public int record_frequency_ms = 1000;
 	public int num_ticks = 0;
+	
+	private Handler handler;
 
 	public Context context;
 	private BatteryStats battery;
@@ -33,12 +39,14 @@ public class DeviceMonitor {
 	private ProcessorStats processor;
 	//private processStats process;
 	
-	private BatteryStats[] batteryStats;
-	private MemoryStats[] memoryStats;
-	private ProcessorStats[] processorStats;
+	public BatteryStats[] batteryStats;
+	public MemoryStats[] memoryStats;
+	public ProcessorStats[] processorStats;
 	
 	private Runnable recordingRunnable;
 	private Thread recordingThread;
+	
+	private TextView textview;
 	
 	public DeviceMonitor(Context context)
 	{
@@ -46,44 +54,54 @@ public class DeviceMonitor {
 		this.battery = new BatteryStats();
 		this.memory = new MemoryStats();
 		this.processor = new ProcessorStats();
-		this.batteryStats = new BatteryStats[max_duration_sec];
-		this.memoryStats = new MemoryStats[max_duration_sec];
-		this.processorStats = new ProcessorStats[max_duration_sec];
+		this.batteryStats = new BatteryStats[max_duration_ms/record_frequency_ms];
+		this.memoryStats = new MemoryStats[max_duration_ms/record_frequency_ms];
+		this.processorStats = new ProcessorStats[max_duration_ms/record_frequency_ms];
 		
+		this.handler = new Handler();
 		RegisterBatteryReceiver();
+	}
+	
+	private Runnable recording = new Runnable() {
+		   @Override
+		   public void run() {
+			   recordDeviceStats();
+        	   num_ticks++;
+        	   if((num_ticks*record_frequency_ms)<(max_duration_ms))
+        	   {
+        		   if(GlobalData.recordingEnabled)
+        		   {
+        			   handler.postDelayed(this, record_frequency_ms);
+        		   }
+        	   }
+		   }
+		};
+		
+	public void ResetRecording()
+	{
+		num_ticks=0;
+		this.batteryStats = new BatteryStats[max_duration_ms/record_frequency_ms];
+		this.memoryStats = new MemoryStats[max_duration_ms/record_frequency_ms];
+		this.processorStats = new ProcessorStats[max_duration_ms/record_frequency_ms];
+	
 	}
 	
 	public void StartRecording()
 	{
+		ResetRecording();
 		GlobalData.recordingEnabled = true;
-	    recordingRunnable= new Runnable() {
-	         @Override
-	         public void run() {
-	              while ((GlobalData.recordingEnabled)&&(num_ticks*record_frequency_ms)<(max_duration_sec*1000)) {
-	                   try {
-	                	   recordDeviceStats();
-	                	   num_ticks++;
-	                	   Thread.sleep(record_frequency_ms);
-					} catch (InterruptedException e) {
-						e.printStackTrace();
-					} 
-             }   
-	         }
-	    };
-	    
-	    recordingThread = new Thread(recordingRunnable);
-	    recordingThread.start();
-	    
+		handler.post(recording);
 	}
 	
 	public void StopRecording()
 	{
 		GlobalData.recordingEnabled = false;
+		handler.removeCallbacks(null);
 	}
 	
 	public void recordDeviceStats()
 	{
-			//Toast.makeText(this.context, "Recording : " + num_ticks, Toast.LENGTH_SHORT);
+			Toast.makeText(this.context, "Recording : " + num_ticks, Toast.LENGTH_SHORT).show();
 			this.processor = getCpuStats();
 			this.battery = getBatteryStats();
 			this.memory = getMemoryStats();

@@ -21,8 +21,8 @@ public TextView stats;
 		setContentView(R.layout.activity_stopped);
 		// Show the Up button in the action bar.
 		getActionBar().setDisplayHomeAsUpEnabled(true);
-		stats = (TextView) findViewById(R.id.battery_stats_text);  
-		stats.setText("Recorded " + GlobalData.monitor.num_ticks + " ticks");
+//		stats = (TextView) findViewById(R.id.battery_stats_text);  
+//		stats.setText("Recorded " + GlobalData.monitor.num_ticks + " ticks");
 	}
 
 	@Override

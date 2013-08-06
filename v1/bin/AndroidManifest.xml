@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.prototest.prima"
+    android:versionCode="1"
+    android:versionName="1.0" >
+
+    <uses-sdk
+        android:minSdkVersion="8"
+        android:targetSdkVersion="17" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@drawable/ic_launcher"
+        android:label="@string/app_name"
+        android:theme="@style/AppTheme" >
+        <activity
+            android:name="com.prototest.prima.MainActivity"
+            android:label="@string/app_name" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="com.prototest.prima.DisplayMessageActivity"
+            android:label="@string/title_activity_display_message"
+            android:parentActivityName="com.prototest.prima.MainActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.prototest.prima.MainActivity" />
+        </activity>
+        <activity
+            android:name="com.prototest.prima.RecordingActivity"
+            android:label="@string/title_activity_recording"
+            android:parentActivityName="com.prototest.prima.MainActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.prototest.prima.MainActivity" />
+        </activity>
+        <activity
+            android:name="com.prototest.prima.StoppedActivity"
+            android:label="@string/title_activity_stopped"
+            android:parentActivityName="com.prototest.prima.RecordingActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.prototest.prima.RecordingActivity" />
+        </activity>
+        <activity
+            android:name="com.prototest.prima.ViewReportActivity"
+            android:label="@string/title_activity_view_report"
+            android:parentActivityName="com.prototest.prima.StoppedActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.prototest.prima.StoppedActivity" />
+        </activity>
+        <activity
+            android:name="com.prototest.prima.StartRecordingActivity"
+            android:label="@string/title_activity_start_recording"
+            android:parentActivityName="com.prototest.prima.MainActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.prototest.prima.MainActivity" />
+        </activity>
+        <activity
+            android:name="com.prototest.prima.ViewStatsActivity"
+            android:label="@string/title_activity_view_stats"
+            android:parentActivityName="com.prototest.prima.MainActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.prototest.prima.MainActivity" />
+        </activity>
+        <activity
+            android:name="com.prototest.prima.ListLayout"
+            android:label="@string/title_activity_list_layout" >
+        </activity>
+        <activity
+            android:name="com.prototest.prima.ViewProcessesActivity"
+            android:label="@string/title_activity_view_processes" >
+        </activity>
+    </application>
+
+</manifest>

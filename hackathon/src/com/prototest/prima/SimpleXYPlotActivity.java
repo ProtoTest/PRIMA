@@ -2,8 +2,13 @@ package com.prototest.prima;
 
 import java.util.Arrays;
 
+import android.annotation.TargetApi;
 import android.app.Activity;
+import android.content.ContentValues;
+import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.WindowManager;
 
 import com.androidplot.xy.LineAndPointFormatter;
@@ -20,11 +25,17 @@ public class SimpleXYPlotActivity extends Activity
  
     private XYPlot plot;
  
-    @Override
+    @TargetApi(Build.VERSION_CODES.HONEYCOMB)
+	@Override
     public void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
- 
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
+        	getActionBar().setDisplayHomeAsUpEnabled(true);
+        }
+        ContentValues batt_values = new ContentValues();
+
+        //batt_values.get(BATTStatsTable.COLUMN_LEVEL, )
         // fun little snippet that prevents users from taking screenshots
         // on ICS+ devices :-)
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_SECURE,
@@ -69,5 +80,20 @@ public class SimpleXYPlotActivity extends Activity
         plot.setTicksPerRangeLabel(3);
         plot.getGraphWidget().setDomainLabelOrientation(-45);
  
+    }
+    
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+
+            case android.R.id.home:
+                // app icon in action bar clicked; go home
+                Intent intentHome = new Intent(this, MainActivity.class);
+                intentHome.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(intentHome);
+                return true;
+
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
 }

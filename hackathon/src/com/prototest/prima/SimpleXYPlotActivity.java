@@ -6,6 +6,7 @@ import android.annotation.TargetApi;
 import android.app.Activity;
 import android.content.ContentValues;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.MenuItem;
@@ -45,7 +46,9 @@ public class SimpleXYPlotActivity extends Activity
  
         // initialize our XYPlot reference:
         plot = (XYPlot) findViewById(R.id.mySimpleXYPlot);
- 
+        plot.getGraphWidget().getGridBackgroundPaint().setColor(Color.WHITE);
+        
+        
         // Create a couple arrays of y-values to plot:
         Number[] series1Numbers = {1, 8, 5, 2, 7, 4};
         Number[] series2Numbers = {4, 6, 3, 8, 2, 10};

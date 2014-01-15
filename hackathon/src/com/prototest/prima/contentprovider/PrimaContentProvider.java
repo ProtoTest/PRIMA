@@ -20,7 +20,7 @@ import com.prototest.prima.database.MEMStatsTable;
 
 public class PrimaContentProvider extends ContentProvider {
 
-   private DbHelper database;
+   private static DbHelper database;
 
    private static final String TAG = "Prima Content Provider";
 
@@ -82,7 +82,7 @@ public class PrimaContentProvider extends ContentProvider {
       return (database == null) ? false : true;
    }
 
-   public void dropAllTables() {
+   public static void dropAllTables() {
       database.dropAllTables(database.getWritableDatabase());
    }
 

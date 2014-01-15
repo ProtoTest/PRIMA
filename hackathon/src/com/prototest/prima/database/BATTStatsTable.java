@@ -18,9 +18,9 @@ public class BATTStatsTable {
    private static final String NOT_NULL = "NOT NULL";
 
    private static final String CREATE_TABLE = String.format("CREATE TABLE %s "
-         + "(%s INTEGER PRIMARY KEY AUTOINCREMENT, %s INT %s, %s INT %s, %s INT %s)", TABLE_BATT,
-         COLUMN_ID, COLUMN_SCALE, NOT_NULL, COLUMN_LEVEL, NOT_NULL, COLUMN_VOLTAGE, NOT_NULL,
-         COLUMN_TEMP, NOT_NULL);
+         + "(%s INTEGER PRIMARY KEY AUTOINCREMENT, %s INT %s, %s INT %s, %s INT %s, %s INT %s)",
+         TABLE_BATT, COLUMN_ID, COLUMN_SCALE, NOT_NULL, COLUMN_LEVEL, NOT_NULL, COLUMN_VOLTAGE,
+         NOT_NULL, COLUMN_TEMP, NOT_NULL);
 
    public static void onCreate(SQLiteDatabase db) {
       Log.d(TAG, "onCreate with sql" + CREATE_TABLE);

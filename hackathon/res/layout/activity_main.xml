@@ -37,9 +37,6 @@
     	android:layout_alignParentBottom="true"
     	android:layout_centerHorizontal="true"
     	android:text="00:00"
-    	android:textSize="35sp" 
+    	android:textSize="@dimen/timer_font_size" 
     	 />
-		
-    	
-
 </RelativeLayout>

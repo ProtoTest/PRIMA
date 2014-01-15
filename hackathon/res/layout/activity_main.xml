@@ -8,27 +8,26 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     android:background="#FFFFFF"
     tools:context=".MainActivity" >
-
-    <Button
-        android:id="@+id/button2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/button1"
-        android:layout_below="@+id/button1"
-        android:layout_marginTop="38dp"
-        android:onClick="switchToGraph"
-        android:text="Look at Graph" />
-
-    <ImageButton
+ 
+ 	<ImageButton
         android:id="@+id/button1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
+		android:layout_centerInParent="true"
         android:layout_marginLeft="106dp"
         android:layout_marginTop="131dp"
         android:background="#FFFFFF"
         android:src="@drawable/start"
         android:text="Start Recording" />
+    
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/button1"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="38dp"
+        android:onClick="switchToGraph"
+        android:text="Look at Graph" />  
 
 </RelativeLayout>

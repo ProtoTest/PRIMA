@@ -29,5 +29,16 @@
         android:layout_marginTop="38dp"
         android:onClick="switchToGraph"
         android:text="Look at Graph" />  
+	<TextView
+    	android:id="@+id/stopwatch1"
+    	android:layout_width="wrap_content"
+    	android:layout_height="wrap_content"
+    	android:layout_marginBottom="50dp"
+    	android:layout_alignParentBottom="true"
+    	android:layout_centerHorizontal="true"
+    	android:text="00:00" 
+    	 />
+		
+    	
 
 </RelativeLayout>

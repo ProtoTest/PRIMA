@@ -2,7 +2,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    
     android:background="#FFFFFF"
     android:orientation="vertical"
     tools:context=".MainActivity" >
@@ -41,6 +40,7 @@
 	        android:layout_centerHorizontal="true"
 	        android:layout_marginTop="38dp"
 	        android:onClick="switchToGraph"
+	        style="@style/textstyle"
 	        android:text="Look at Graph" /> 
     </RelativeLayout> 
     
@@ -60,6 +60,7 @@
 	    	android:layout_alignParentBottom="true"
 	    	android:layout_centerHorizontal="true"
 	    	android:text="00:00"
+	     	style="@style/textstyle"
 	    	android:textSize="@dimen/timer_font_size" 
 	    	 />
 	 </RelativeLayout> 

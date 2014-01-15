@@ -67,14 +67,12 @@ public class PrimaApp extends Application implements OnSharedPreferenceChangeLis
 
    @Override
    public void onLowMemory() {
-      // TODO Auto-generated method stub
       super.onLowMemory();
    }
 
    /* Only called on the emulator, not on the real device */
    @Override
    public void onTerminate() {
-      // TODO Auto-generated method stub
       super.onTerminate();
    }
 
@@ -94,6 +92,9 @@ public class PrimaApp extends Application implements OnSharedPreferenceChangeLis
 
    private void seedDatabase() {
       Log.d(TAG, "seedDatabase()");
+
+      PrimaContentProvider.dropAllTables();
+
       ContentValues batt_values = new ContentValues();
       ContentValues mem_values = new ContentValues();
       ContentValues cpu_values = new ContentValues();

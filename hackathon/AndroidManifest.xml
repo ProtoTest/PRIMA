@@ -12,7 +12,7 @@
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
-        android:theme="@style/AppTheme" >
+        android:theme="@style/AppTheme" android:name="PrimaApp">
         <activity
             android:name="com.prototest.prima.MainActivity"
             android:label="@string/app_name" >
@@ -22,10 +22,18 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
         <activity
-      		android:name=".SimpleXYPlotActivity"
-      		android:label="@string/app_name">          
- 		</activity>
+      	    android:name=".SimpleXYPlotActivity"
+      	    android:label="@string/app_name">          
+        </activity>
+
+                
+        <provider
+            android:name=".contentprovider.PrimaContentProvider"
+            android:authorities="com.prototest.android.prima.contentprovider"
+            android:exported="false" >
+        </provider>
     </application>
 
 </manifest>

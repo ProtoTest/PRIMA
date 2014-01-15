@@ -22,7 +22,7 @@
 			android:layout_centerHorizontal="true"
 	        android:background="#FFFFFF"
 	        android:scaleType="fitCenter"
-	        android:src="@drawable/start"
+	        android:src="@drawable/buttonaction"
 	        android:text="Start Recording" />
  	</RelativeLayout>
  	<View 

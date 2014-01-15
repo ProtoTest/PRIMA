@@ -2,6 +2,7 @@ package com.prototest.prima;
 
 import android.app.Application;
 import android.content.ContentValues;
+import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.OnSharedPreferenceChangeListener;
 import android.content.res.Configuration;
@@ -16,8 +17,13 @@ import com.prototest.prima.database.MEMStatsTable;
 public class PrimaApp extends Application implements OnSharedPreferenceChangeListener {
 
    static final String TAG = "PrimaApp";
+   static Context context;
 
    SharedPreferences prefs;
+
+   public static Context getAppContext() {
+      return PrimaApp.context;
+   }
 
    /* Screen rotation, etc */
    @Override
@@ -32,6 +38,7 @@ public class PrimaApp extends Application implements OnSharedPreferenceChangeLis
       Boolean db_seeded = false;
 
       super.onCreate();
+      PrimaApp.context = getApplicationContext();
 
       /* Login details, or whatever */
       Log.d(TAG, "onCreate");

@@ -7,6 +7,8 @@ import java.io.IOException;
 import java.io.RandomAccessFile;
 import java.util.regex.Pattern;
 
+import android.util.Log;
+
 public class ProcessorStats implements SystemStats {
 	public long numProcs;
 	public long used;
@@ -46,45 +48,46 @@ public class ProcessorStats implements SystemStats {
 
 	@Override
 	public void GetStats() {
-        RandomAccessFile reader = null;
-		try {
-			reader = new RandomAccessFile("/proc/stat", "r");
-		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-        String load = "";
-   
-        String[] toks = new String[10];
-        long idle;
-        long cpu;
-
-        
-        for(int i=0;i<=getNumCores()+1;i++)
-        {
-        	try {
-				load = reader.readLine();
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-        	toks = load.split(" ");
-	    	if(toks[0].contains("cpu"))
-	    	{
-	
-	    		this.free = Long.parseLong(toks[4]);
-	    		this.used = Long.parseLong(toks[1]) + Long.parseLong(toks[2]) + Long.parseLong(toks[3])
-	  	              + Long.parseLong(toks[5]) + Long.parseLong(toks[6]) + Long.parseLong(toks[7]);  
-	    		this.percentUsed = ((float)used/(float)used+free)*100;
-	    	}
-        }
-    	try {
-			reader.close();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-    
+		Log.d("ProcessorStats","GetStats");
+//        RandomAccessFile reader = null;
+//		try {
+//			reader = new RandomAccessFile("/proc/stat", "r");
+//		} catch (FileNotFoundException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+//        String load = "";
+//   
+//        String[] toks = new String[10];
+//        long idle;
+//        long cpu;
+//
+//        
+//        for(int i=0;i<=getNumCores()+1;i++)
+//        {
+//        	try {
+//				load = reader.readLine();
+//			} catch (IOException e) {
+//				// TODO Auto-generated catch block
+//				e.printStackTrace();
+//			}
+//        	toks = load.split(" ");
+//	    	if(toks[0].contains("cpu"))
+//	    	{
+//	
+//	    		this.free = Long.parseLong(toks[4]);
+//	    		this.used = Long.parseLong(toks[1]) + Long.parseLong(toks[2]) + Long.parseLong(toks[3])
+//	  	              + Long.parseLong(toks[5]) + Long.parseLong(toks[6]) + Long.parseLong(toks[7]);  
+//	    		this.percentUsed = ((float)used/(float)used+free)*100;
+//	    	}
+//        }
+//    	try {
+//			reader.close();
+//		} catch (IOException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+//    
 		
 	}
 	

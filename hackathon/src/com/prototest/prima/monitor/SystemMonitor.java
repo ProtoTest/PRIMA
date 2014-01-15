@@ -8,10 +8,11 @@ import android.text.format.Time;
 
 public class SystemMonitor {
 	protected SystemStats stats;
-	private ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(1);
+	private ScheduledExecutorService scheduler;
 	private ScheduledFuture<?> handle;
 	
 	public SystemMonitor(SystemStats stats){
+		this.scheduler = Executors.newScheduledThreadPool(3);
 		this.stats = stats;
 	}
 	

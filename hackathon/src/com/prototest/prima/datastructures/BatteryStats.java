@@ -1,10 +1,13 @@
 package com.prototest.prima.datastructures;
 
+import com.prototest.prima.PrimaApp;
+
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.BatteryManager;
+import android.util.Log;
 
 public class BatteryStats implements SystemStats{
 	public float percent;
@@ -15,7 +18,8 @@ public class BatteryStats implements SystemStats{
 	public BatteryStats()	{}
 	public void GetStats()
 	{
-		RegisterBatteryReceiver();
+		Log.d("BatteryStats","GetStats");
+		//RegisterBatteryReceiver();
 	}
 	public void RegisterBatteryReceiver()
 	{
@@ -32,7 +36,7 @@ public class BatteryStats implements SystemStats{
 	        }
 	    };
 	    IntentFilter filter = new IntentFilter(Intent.ACTION_BATTERY_CHANGED);
-	    //PRIMA.getAppContext().registerReceiver(batteryReceiver, filter);	
+	    PrimaApp.getAppContext().registerReceiver(batteryReceiver, filter);	
 	
 	}
 }

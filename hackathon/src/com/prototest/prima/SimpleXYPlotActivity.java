@@ -48,7 +48,11 @@ public class SimpleXYPlotActivity extends Activity {
 
       // initialize our XYPlot reference:
       plot = (XYPlot) findViewById(R.id.mySimpleXYPlot);
+      plot.getBackgroundPaint().setColor(Color.WHITE);
+      plot.setBorderStyle(XYPlot.BorderStyle.NONE, null, null);
+      plot.getGraphWidget().getBackgroundPaint().setColor(Color.WHITE);
       plot.getGraphWidget().getGridBackgroundPaint().setColor(Color.WHITE);
+      
 
       // Create a couple arrays of y-values to plot:
       Number[] series1Numbers = { 1, 8, 5, 2, 7, 4 };

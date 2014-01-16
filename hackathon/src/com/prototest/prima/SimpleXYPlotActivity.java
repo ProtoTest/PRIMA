@@ -9,6 +9,7 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Color;
 import android.net.Uri;
+import android.graphics.Paint;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
@@ -49,7 +50,7 @@ public class SimpleXYPlotActivity extends Activity {
 
 
       // fun little snippet that prevents users from taking screenshots
-      // on ICS+ devices :-)
+      // on ICS+  :-)
       getWindow().setFlags(WindowManager.LayoutParams.FLAG_SECURE,
             WindowManager.LayoutParams.FLAG_SECURE);
 
@@ -61,6 +62,7 @@ public class SimpleXYPlotActivity extends Activity {
       plot.setBorderStyle(XYPlot.BorderStyle.NONE, null, null);
       plot.getGraphWidget().getBackgroundPaint().setColor(Color.WHITE);
       plot.getGraphWidget().getGridBackgroundPaint().setColor(Color.WHITE);
+      plot.getLegendWidget().getTextPaint().setColor(Color.GRAY);
       
 
       // Turn the above arrays into XYSeries':

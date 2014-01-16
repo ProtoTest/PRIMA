@@ -80,8 +80,8 @@ public class SimpleXYPlotActivity extends Activity {
       series1Format.configure(getApplicationContext(), R.layout.line_point_formatter_with_plf3);
       // add a new series' to the xyplot:
       plot.addSeries(series1, series1Format);
-      plot.addSeries(series2, series1Format);
-      plot.addSeries(series3, series1Format);
+      plot.addSeries(series2, series2Format);
+      plot.addSeries(series3, series3Format);
 
 
       // reduce the number of range labels

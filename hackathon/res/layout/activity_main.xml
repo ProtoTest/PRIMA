@@ -57,6 +57,7 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
+<<<<<<< HEAD
         android:layout_weight=".05" >
 
         <TextView
@@ -92,6 +93,22 @@
             android:textSize="@dimen/timer_font_size" />
     </RelativeLayout>
 
+=======
+        android:layout_weight=".05">
+		<TextView
+	    	android:id="@+id/stopwatch"
+	    	android:layout_width="wrap_content"
+	    	android:layout_height="wrap_content"
+	    	android:layout_marginBottom="50dp"
+	    	android:layout_alignParentBottom="true"
+	    	android:layout_centerHorizontal="true"
+	    	android:text="00:00:00"
+	     	style="@style/textstyle"
+	    	android:textSize="@dimen/timer_font_size" 
+	    	 />
+	 </RelativeLayout> 
+	 
+>>>>>>> Timer starts/stops when pressed
     <View
         android:layout_width="wrap_content"
         android:layout_height="0dp"

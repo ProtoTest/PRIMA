@@ -229,13 +229,13 @@ public class PrimaContentProvider extends ContentProvider {
          HashSet<String> requestedColumns = new HashSet<String>(Arrays.asList(projection));
          HashSet<String> availableColumns = null;
 
-         if (table.getName() == "BATTStatsTable") {
+         if (table.getName().equals(BATTStatsTable.class.getName())) {
             availableColumns = new HashSet<String>(
                   Arrays.asList(PrimaContentProvider.columnsAvailBATT));
-         } else if (table.getName() == "CPUStatsTable") {
+         } else if (table.getName().equals(CPUStatsTable.class.getName())) {
             availableColumns = new HashSet<String>(
                   Arrays.asList(PrimaContentProvider.columnsAvailCPU));
-         } else if (table.getName() == "MEMStatsTable") {
+         } else if (table.getName().equals(MEMStatsTable.class.getName())) {
             availableColumns = new HashSet<String>(
                   Arrays.asList(PrimaContentProvider.columnsAvailMEM));
          } else {

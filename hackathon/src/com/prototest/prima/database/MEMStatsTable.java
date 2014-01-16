@@ -1,5 +1,6 @@
 package com.prototest.prima.database;
 
+import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.provider.BaseColumns;
 import android.util.Log;
@@ -14,14 +15,21 @@ public class MEMStatsTable {
    public static final String COLUMN_CREATED_AT = "created_at";
    private static final String NOT_NULL = "NOT NULL";
 
-   private static final String CREATE_TABLE = String.format("CREATE TABLE %s "
-         + "(%s INTEGER PRIMARY KEY AUTOINCREMENT, %s INT %s, %s INT %s, %s DATETIME %s)",
-         TABLE_MEM, COLUMN_ID, COLUMN_CURRENT, NOT_NULL, COLUMN_AVAILABLE, NOT_NULL,
-         COLUMN_CREATED_AT, NOT_NULL);
+   private static final String CREATE_TABLE = String
+         .format(
+               "CREATE TABLE %s "
+                     + "(%s INTEGER PRIMARY KEY AUTOINCREMENT, %s INT %s, %s INT %s, %s DATETIME default current_timestamp)",
+               TABLE_MEM, COLUMN_ID, COLUMN_CURRENT, NOT_NULL, COLUMN_AVAILABLE, NOT_NULL,
+               COLUMN_CREATED_AT);
 
    public static void onCreate(SQLiteDatabase db) {
       Log.d(TAG, "onCreate with sql: " + CREATE_TABLE);
-      db.execSQL(CREATE_TABLE);
+
+      try {
+         db.execSQL(CREATE_TABLE);
+      } catch (SQLException e) {
+         Log.e(TAG, e.getMessage());
+      }
    }
 
    public static void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {

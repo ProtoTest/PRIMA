@@ -83,6 +83,7 @@ public class PrimaContentProvider extends ContentProvider {
    }
 
    public static void dropAllTables() {
+      Log.d(TAG, "dropAllTables()");
       database.dropAllTables(database.getWritableDatabase());
    }
 

@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.View;
+import android.widget.TextView;
 
 import com.prototest.prima.contentprovider.PrimaContentProvider;
 import com.prototest.prima.datastructures.BatteryStats;
@@ -22,6 +23,7 @@ public class MainActivity extends Activity {
    private static SystemMonitor memoryMonitor;
    private static SystemMonitor processorMonitor;
    private static boolean recording = false;
+   private TextView recordingLabel;
 
    @Override
    protected void onCreate(Bundle savedInstanceState) {
@@ -34,6 +36,8 @@ public class MainActivity extends Activity {
          processorMonitor = new SystemMonitor(new ProcessorStats());
       } catch (IOException e) {
       }
+
+      recordingLabel = (TextView) findViewById(R.id.recording_status);
    }
 
    @Override
@@ -58,7 +62,7 @@ public class MainActivity extends Activity {
          startRecording();
          recording = true;
       } else {
-         stopRecording();
+         stopRecording(view);
          recording = false;
       }
    }
@@ -68,12 +72,15 @@ public class MainActivity extends Activity {
       batteryMonitor.StartMonitoring();
       memoryMonitor.StartMonitoring();
       processorMonitor.StartMonitoring();
+      recordingLabel.setText(R.string.recording);
    }
 
-   private void stopRecording() {
+   private void stopRecording(View view) {
       Log.d(TAG, "stopRecording");
       batteryMonitor.StopMonitoring();
       memoryMonitor.StopMonitoring();
       processorMonitor.StopMonitoring();
+      recordingLabel.setText(R.string.not_recording);
+      switchToGraph(view);
    }
 }

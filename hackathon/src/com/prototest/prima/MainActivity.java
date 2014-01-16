@@ -106,8 +106,8 @@ private void startTimer() {
 
 
 			public void run() {
-	            elapsedTime += 1; //increase every sec
 	            mHandler.obtainMessage(1).sendToTarget();
+	            elapsedTime += 1; //increase every sec;
 
 	        }
 	    }, 0, 1000);

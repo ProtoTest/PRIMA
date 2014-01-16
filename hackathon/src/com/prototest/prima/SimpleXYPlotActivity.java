@@ -76,12 +76,14 @@ public class SimpleXYPlotActivity extends Activity {
       LineAndPointFormatter series1Format = new LineAndPointFormatter();
       series1Format.setPointLabelFormatter(new PointLabelFormatter());
       series1Format.configure(getApplicationContext(), R.layout.line_point_formatter_with_plf1);
+      
       LineAndPointFormatter series2Format = new LineAndPointFormatter();
-      series1Format.setPointLabelFormatter(new PointLabelFormatter());
-      series1Format.configure(getApplicationContext(), R.layout.line_point_formatter_with_plf2);
+      series2Format.setPointLabelFormatter(new PointLabelFormatter());
+      series2Format.configure(getApplicationContext(), R.layout.line_point_formatter_with_plf2);
+      
       LineAndPointFormatter series3Format = new LineAndPointFormatter();
-      series1Format.setPointLabelFormatter(new PointLabelFormatter());
-      series1Format.configure(getApplicationContext(), R.layout.line_point_formatter_with_plf3);
+      series3Format.setPointLabelFormatter(new PointLabelFormatter());
+      series3Format.configure(getApplicationContext(), R.layout.line_point_formatter_with_plf3);
       // add a new series' to the xyplot:
       plot.addSeries(series1, series1Format);
       plot.addSeries(series2, series2Format);

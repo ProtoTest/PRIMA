@@ -39,13 +39,6 @@ public class SimpleXYPlotActivity extends Activity {
          getActionBar().setDisplayHomeAsUpEnabled(true);
       }
 
-      // Seed the database
-      new Thread(new Runnable() {
-         public void run() {
-            seedDatabase();
-         }
-      }).start();
-
       // fun little snippet that prevents users from taking screenshots
       // on ICS+ devices :-)
       getWindow().setFlags(WindowManager.LayoutParams.FLAG_SECURE,

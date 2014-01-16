@@ -37,4 +37,8 @@ public class DbHelper extends SQLiteOpenHelper {
       CPUStatsTable.dropTable(db);
       MEMStatsTable.dropTable(db);
    }
+
+   public void createAllTables(SQLiteDatabase db) {
+      onCreate(db);
+   }
 }

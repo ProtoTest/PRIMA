@@ -87,6 +87,11 @@ public class PrimaContentProvider extends ContentProvider {
       database.dropAllTables(database.getWritableDatabase());
    }
 
+   public static void createAllTables() {
+      Log.d(TAG, "createAllTables()");
+      database.createAllTables(database.getWritableDatabase());
+   }
+
    @SuppressWarnings("unchecked")
    @Override
    public Cursor query(Uri uri, String[] projection, String selection, String[] selectionArgs,
@@ -255,5 +260,4 @@ public class PrimaContentProvider extends ContentProvider {
       Log.i(TAG, "NOT IMPLEMENTED");
       return 0;
    }
-
 }

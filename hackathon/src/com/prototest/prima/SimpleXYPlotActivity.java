@@ -1,5 +1,8 @@
 package com.prototest.prima;
 
+import java.text.DecimalFormat;
+import java.text.Format;
+import java.text.NumberFormat;
 import java.util.Arrays;
 
 import android.annotation.TargetApi;
@@ -88,7 +91,9 @@ public class SimpleXYPlotActivity extends Activity {
       plot.addSeries(series3, series3Format);
 
       // reduce the number of range labels
-      plot.setRangeBoundaries(0.0, 100.0, BoundaryMode.FIXED);
+      plot.setRangeBoundaries(0, 100, BoundaryMode.FIXED);
+      Format rangeNumberFormat = new DecimalFormat("0");
+      plot.setRangeValueFormat(rangeNumberFormat);
       plot.setRangeStep(XYStepMode.INCREMENT_BY_VAL, 10);
       plot.getGraphWidget().setDomainLabelOrientation(-45);
 

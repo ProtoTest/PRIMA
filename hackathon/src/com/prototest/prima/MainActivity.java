@@ -13,15 +13,12 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.View;
 import android.widget.TextView;
-<<<<<<< HEAD
 
 import com.prototest.prima.contentprovider.PrimaContentProvider;
 import com.prototest.prima.datastructures.BatteryStats;
 import com.prototest.prima.datastructures.MemoryStats;
 import com.prototest.prima.datastructures.ProcessorStats;
 import com.prototest.prima.monitor.SystemMonitor;
-=======
->>>>>>> Timer starts/stops when pressed
 
 public class MainActivity extends Activity {
 
@@ -30,16 +27,11 @@ public class MainActivity extends Activity {
    private static SystemMonitor memoryMonitor;
    private static SystemMonitor processorMonitor;
    private static boolean recording = false;
-<<<<<<< HEAD
    private TextView recordingLabel;
-
-=======
    private static Timer timer;
    private int elapsedTime = 0;
    private TextView stopwatchText;
 
-   
->>>>>>> Timer starts/stops when pressed
    @Override
    protected void onCreate(Bundle savedInstanceState) {
       super.onCreate(savedInstanceState);
@@ -85,39 +77,21 @@ public class MainActivity extends Activity {
 
    private void startRecording() {
       Log.d(TAG, "startRecording");
+      startTimer();
       batteryMonitor.StartMonitoring();
       memoryMonitor.StartMonitoring();
       processorMonitor.StartMonitoring();
       recordingLabel.setText(R.string.recording);
    }
-<<<<<<< HEAD
 
    private void stopRecording(View view) {
       Log.d(TAG, "stopRecording");
+      stopTimer();
       batteryMonitor.StopMonitoring();
       memoryMonitor.StopMonitoring();
       processorMonitor.StopMonitoring();
       recordingLabel.setText(R.string.not_recording);
       switchToGraph(view);
-   }
-=======
-   
-   private void startRecording()
-   {
-	   Log.d(TAG,"startRecording");
-	   startTimer();
-	   batteryMonitor.StartMonitoring();
-	   memoryMonitor.StartMonitoring();
-	   processorMonitor.StartMonitoring();
-   }
-   
-   private void stopRecording()
-   {
-	   Log.d(TAG,"stopRecording");
-	   stopTimer();
-	   batteryMonitor.StopMonitoring();
-	   memoryMonitor.StopMonitoring();
-	   processorMonitor.StopMonitoring();
    }
    
    private void stopTimer() {
@@ -154,6 +128,5 @@ private void startTimer() {
 		int displaySeconds = seconds % 60;
 		return String.format("%02d:%02d:%02d", hours, displayMinutes, displaySeconds);
 	}
->>>>>>> Timer starts/stops when pressed
 }
 

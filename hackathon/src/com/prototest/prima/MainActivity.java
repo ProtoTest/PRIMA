@@ -103,6 +103,7 @@ public class MainActivity extends Activity {
       timer.cancel();
       timer = null;
       elapsedTime = 0;
+      stopwatchText.setText(formatStopWatchTime(elapsedTime));
    }
 
    private void startTimer() {

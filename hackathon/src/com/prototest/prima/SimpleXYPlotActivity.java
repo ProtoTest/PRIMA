@@ -6,6 +6,7 @@ import android.annotation.TargetApi;
 import android.app.Activity;
 import android.content.ContentValues;
 import android.content.Intent;
+import android.database.Cursor;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
@@ -39,6 +40,13 @@ public class SimpleXYPlotActivity extends Activity {
          getActionBar().setDisplayHomeAsUpEnabled(true);
       }
 
+      Integer[] stats = getBattStats();
+      for (int row : stats) {
+    	  StringBuilder info = new StringBuilder("Stats! ");
+    	  
+    	  Log.d(this.getClass().getName(), "Stats! " + row);
+      }
+
       // fun little snippet that prevents users from taking screenshots
       // on ICS+ devices :-)
       getWindow().setFlags(WindowManager.LayoutParams.FLAG_SECURE,
@@ -59,7 +67,7 @@ public class SimpleXYPlotActivity extends Activity {
       Number[] series2Numbers = { 4, 6, 3, 8, 2, 10 };
 
       // Turn the above arrays into XYSeries':
-      XYSeries series1 = new SimpleXYSeries(Arrays.asList(series1Numbers), // SimpleXYSeries
+      XYSeries series1 = new SimpleXYSeries(Arrays.asList(stats), // SimpleXYSeries
                                                                            // takes a List
                                                                            // so turn our
                                                                            // array into a
@@ -151,5 +159,19 @@ public class SimpleXYPlotActivity extends Activity {
 
       ((PrimaApp) getApplication()).prefs.edit().putBoolean("databaseSeeded", true).commit();
       Log.d("SimpleXYPlotActivity", "Database has been successfully seeded!!!");
+   }
+   
+   private Integer[] getBattStats() {
+	   String[] projection = new String[] {BATTStatsTable.COLUMN_ID, BATTStatsTable.COLUMN_CREATED_AT, BATTStatsTable.COLUMN_LEVEL};
+	   Cursor cursor = getContentResolver().query(PrimaContentProvider.CONTENT_URI_BATT, projection, null, null, null);
+	   Integer[] results = new Integer[cursor.getCount()];
+	   cursor.moveToFirst();
+	   for (int i = 0; i < cursor.getCount(); i++) {
+		   
+		   int level = cursor.getInt(2);
+		   results[i] = level;
+		   cursor.moveToNext();
+	   }
+	   return results;
    }
 }

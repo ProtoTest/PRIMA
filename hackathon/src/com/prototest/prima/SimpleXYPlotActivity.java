@@ -14,11 +14,13 @@ import android.util.Log;
 import android.view.MenuItem;
 import android.view.WindowManager;
 
+import com.androidplot.xy.BoundaryMode;
 import com.androidplot.xy.LineAndPointFormatter;
 import com.androidplot.xy.PointLabelFormatter;
 import com.androidplot.xy.SimpleXYSeries;
 import com.androidplot.xy.XYPlot;
 import com.androidplot.xy.XYSeries;
+import com.androidplot.xy.XYStepMode;
 import com.prototest.prima.contentprovider.PrimaContentProvider;
 import com.prototest.prima.database.BATTStatsTable;
 import com.prototest.prima.database.CPUStatsTable;
@@ -40,8 +42,8 @@ public class SimpleXYPlotActivity extends Activity {
          getActionBar().setDisplayHomeAsUpEnabled(true);
       }
 
-      Integer[] stats = getBattStats();
-      for (int row : stats) {
+      Double[] stats = getMemStats();
+      for (double row : stats) {
     	  StringBuilder info = new StringBuilder("Stats! ");
     	  
     	  Log.d(this.getClass().getName(), "Stats! " + row);
@@ -77,8 +79,6 @@ public class SimpleXYPlotActivity extends Activity {
             "Series1"); // Set the display title of the series
 
       // same as above
-      XYSeries series2 = new SimpleXYSeries(Arrays.asList(series2Numbers),
-            SimpleXYSeries.ArrayFormat.Y_VALS_ONLY, "Series2");
 
       // Create a formatter to use for drawing a series using LineAndPointRenderer
       // and configure it from xml:
@@ -89,14 +89,10 @@ public class SimpleXYPlotActivity extends Activity {
       // add a new series' to the xyplot:
       plot.addSeries(series1, series1Format);
 
-      // same as above:
-      LineAndPointFormatter series2Format = new LineAndPointFormatter();
-      series2Format.setPointLabelFormatter(new PointLabelFormatter());
-      series2Format.configure(getApplicationContext(), R.layout.line_point_formatter_with_plf2);
-      plot.addSeries(series2, series2Format);
 
       // reduce the number of range labels
-      plot.setTicksPerRangeLabel(3);
+      plot.setRangeBoundaries(0.0, 100.0, BoundaryMode.FIXED);
+      plot.setRangeStep(XYStepMode.INCREMENT_BY_VAL, 10);
       plot.getGraphWidget().setDomainLabelOrientation(-45);
 
    }
@@ -161,15 +157,32 @@ public class SimpleXYPlotActivity extends Activity {
       Log.d("SimpleXYPlotActivity", "Database has been successfully seeded!!!");
    }
    
-   private Integer[] getBattStats() {
-	   String[] projection = new String[] {BATTStatsTable.COLUMN_ID, BATTStatsTable.COLUMN_CREATED_AT, BATTStatsTable.COLUMN_LEVEL};
-	   Cursor cursor = getContentResolver().query(PrimaContentProvider.CONTENT_URI_BATT, projection, null, null, null);
-	   Integer[] results = new Integer[cursor.getCount()];
+   private Double[] getMemStats() {
+	   String[] projection = new String[] {MEMStatsTable.COLUMN_ID, MEMStatsTable.COLUMN_CURRENT, MEMStatsTable.COLUMN_AVAILABLE};
+	   Cursor cursor = getContentResolver().query(PrimaContentProvider.CONTENT_URI_MEM, projection, null, null, null);
+	   Double[] results = new Double[cursor.getCount()];
 	   cursor.moveToFirst();
 	   for (int i = 0; i < cursor.getCount(); i++) {
-		   
-		   int level = cursor.getInt(2);
-		   results[i] = level;
+		   double curr = cursor.getInt(1);
+		   double avail = cursor.getInt(2);
+		   Log.d("SCREW YOU", "" + (curr / (curr+avail))*100);
+		   results[i] = (curr / (curr+avail))*100;
+		   cursor.moveToNext();
+	   }
+	   return results;
+   
+   }
+   
+   private Double[] getCPUStats() {
+	   String[] projection = new String[] {CPUStatsTable.COLUMN_ID, CPUStatsTable.COLUMN_USED, CPUStatsTable.COLUMN_FREE};
+	   Cursor cursor = getContentResolver().query(PrimaContentProvider.CONTENT_URI_CPU, projection, null, null, null);
+	   Double[] results = new Double[cursor.getCount()];
+	   cursor.moveToFirst();
+	   for (int i = 0; i < cursor.getCount(); i++) {
+		   double used = cursor.getInt(1);
+		   double free = cursor.getInt(2);
+		   Log.d("SCREW YOU", "" + (used / (used+free))*100);
+		   results[i] = (used / (used+free))*100;
 		   cursor.moveToNext();
 	   }
 	   return results;

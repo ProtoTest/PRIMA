@@ -1,6 +1,9 @@
 package com.prototest.prima.datastructures;
 
+import android.annotation.TargetApi;
+import android.app.ActivityManager;
 import android.content.ContentValues;
+import android.os.Build;
 import android.util.Log;
 
 import com.prototest.prima.PrimaApp;
@@ -23,20 +26,26 @@ public class MemoryStats implements SystemStats {
       return percent;
    }
 
-   @Override
+   @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
+@Override
    public void GetStats() {
       Log.d("MemoryStats", "GetStats");
-      // ProcessBuilder cmd;
-      // StringBuffer strMemory = new StringBuffer();
-      // ActivityManager actvityManager = (ActivityManager)
-      // PrimaApp.getAppContext().getSystemService(
-      // android.content.Context.ACTIVITY_SERVICE);
-      // ActivityManager.MemoryInfo mInfo = new ActivityManager.MemoryInfo();
-      // actvityManager.getMemoryInfo(mInfo);
-      // this.available = mInfo.availMem / 1048576L;
-      // Log.d("MemoryStats",String.valueOf(this.available));
-      // this.max = mInfo.totalMem/1048576L;
-      // this.current = this.max - this.available;
+      try {
+    	  ProcessBuilder cmd;
+          StringBuffer strMemory = new StringBuffer();
+          ActivityManager actvityManager = (ActivityManager)
+          PrimaApp.getAppContext().getSystemService(
+          android.content.Context.ACTIVITY_SERVICE);
+          ActivityManager.MemoryInfo mInfo = new ActivityManager.MemoryInfo();
+          actvityManager.getMemoryInfo(mInfo);
+          this.available = mInfo.availMem / 1048576L;
+          this.max = mInfo.totalMem/1048576L;
+          this.current = this.max - this.available;
+          //Log.d("MemoryStats",String.valueOf(this.available) + "+" + String.valueOf(this.current) +"=" + String.valueOf(this.max));
+	} catch (Exception e) {
+		Log.d("MemoryStats","GetStats : Exception caught : " + e.getMessage());
+	}
+      
    }
 
    @Override

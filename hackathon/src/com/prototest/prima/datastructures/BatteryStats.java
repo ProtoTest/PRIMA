@@ -15,38 +15,61 @@ import com.prototest.prima.database.BATTStatsTable;
 public class BatteryStats implements SystemStats {
 
    private static final String TAG = "BatteryStats";
-
-   public float percent;
+   private boolean recording = false;
+   public float percent = -1;
    public int scale = -1;
    public int level = -1;
    public int voltage = -1;
    public int temp = -1;
-
+   
+   public float tempPercent = -1;
+   public int tempScale = -1;
+   public int tempLevel = -1;
+   public int tempVoltage = -1;
+   public int tempTemp = -1;
+   
+   private BroadcastReceiver  batteryReceiver = new BroadcastReceiver() {
+       @Override
+       public void onReceive(Context context, Intent intent) {
+    	  tempLevel = intent.getIntExtra(BatteryManager.EXTRA_LEVEL, -1);
+    	  tempScale = intent.getIntExtra(BatteryManager.EXTRA_SCALE, -1);
+          tempTemp = intent.getIntExtra(BatteryManager.EXTRA_TEMPERATURE, -1);
+          tempVoltage = intent.getIntExtra(BatteryManager.EXTRA_VOLTAGE, -1);
+          tempPercent = ((float) level / (float) scale) * 100;
+       }
+    };
    public BatteryStats() {
+	  StartListening(); 
    }
 
    @Override
-   public void GetStats() {
-      Log.d("BatteryStats", "GetStats");
-      // RegisterBatteryReceiver();
+   public void GetStats() {  
+      percent = tempPercent;
+      scale = tempScale;
+      voltage = tempVoltage;
+      level = tempLevel;
+      temp = tempTemp;
+      
+   }
+   
+   private void StopListening()
+   {
+	   batteryReceiver.abortBroadcast();
+	   recording = false;
+   }
+   
+   private void StartListening()
+   {
+	   if(!recording){
+		   RegisterBatteryReceiver();
+		   recording=true;
+	   }
    }
 
-   public void RegisterBatteryReceiver() {
-      BroadcastReceiver batteryReceiver = new BroadcastReceiver() {
-
-         @Override
-         public void onReceive(Context context, Intent intent) {
-            level = intent.getIntExtra(BatteryManager.EXTRA_LEVEL, -1);
-            scale = intent.getIntExtra(BatteryManager.EXTRA_SCALE, -1);
-            temp = intent.getIntExtra(BatteryManager.EXTRA_TEMPERATURE, -1);
-            voltage = intent.getIntExtra(BatteryManager.EXTRA_VOLTAGE, -1);
-
-            percent = ((float) level / (float) scale) * 100;
-         }
-      };
+   private void RegisterBatteryReceiver() {
+	   Log.d(TAG,"RegisterReceiver");
       IntentFilter filter = new IntentFilter(Intent.ACTION_BATTERY_CHANGED);
       PrimaApp.getAppContext().registerReceiver(batteryReceiver, filter);
-
    }
 
    @Override

@@ -12,6 +12,7 @@ import android.os.Message;
 import android.util.Log;
 import android.view.Menu;
 import android.view.View;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.prototest.prima.contentprovider.PrimaContentProvider;
@@ -31,6 +32,7 @@ public class MainActivity extends Activity {
    private static Timer timer;
    private int elapsedTime = 0;
    private TextView stopwatchText;
+   private ImageButton recordingImageButton;
 
    @Override
    protected void onCreate(Bundle savedInstanceState) {
@@ -46,6 +48,7 @@ public class MainActivity extends Activity {
       }
 
       recordingLabel = (TextView) findViewById(R.id.recording_status);
+      recordingImageButton = (ImageButton) findViewById(R.id.rec_toggle_button);
    }
 
    @Override
@@ -82,6 +85,7 @@ public class MainActivity extends Activity {
       memoryMonitor.StartMonitoring();
       processorMonitor.StartMonitoring();
       recordingLabel.setText(R.string.recording);
+      recordingImageButton.setImageResource(R.drawable.stop);
    }
 
    private void stopRecording(View view) {
@@ -91,42 +95,41 @@ public class MainActivity extends Activity {
       memoryMonitor.StopMonitoring();
       processorMonitor.StopMonitoring();
       recordingLabel.setText(R.string.not_recording);
+      recordingImageButton.setImageResource(R.drawable.start);
       switchToGraph(view);
    }
-   
+
    private void stopTimer() {
-	timer.cancel();
-	timer = null;
-	elapsedTime = 0;
+      timer.cancel();
+      timer = null;
+      elapsedTime = 0;
+   }
+
+   private void startTimer() {
+      timer = new Timer();
+      timer.scheduleAtFixedRate(new TimerTask() {
+
+         public void run() {
+            mHandler.obtainMessage(1).sendToTarget();
+            elapsedTime += 1; // increase every sec;
+
+         }
+      }, 0, 1000);
+   }
+
+   private Handler mHandler = new Handler() {
+      public void handleMessage(Message msg) {
+         stopwatchText.setText(formatStopWatchTime(elapsedTime)); // this is the textview
+      }
+   };
+
+   private String formatStopWatchTime(int elapsedSeconds) {
+      String timeText;
+      int hours = elapsedSeconds / 3600;
+      int minutes = elapsedSeconds / 60;
+      int seconds = elapsedSeconds / 1;
+      int displayMinutes = minutes % 60;
+      int displaySeconds = seconds % 60;
+      return String.format("%02d:%02d:%02d", hours, displayMinutes, displaySeconds);
+   }
 }
-
-private void startTimer() {
-	    timer = new Timer();
-	    timer.scheduleAtFixedRate(new TimerTask() {
-
-
-			public void run() {
-	            mHandler.obtainMessage(1).sendToTarget();
-	            elapsedTime += 1; //increase every sec;
-
-	        }
-	    }, 0, 1000);
-	}
-
-	private Handler mHandler = new Handler() {
-	    public void handleMessage(Message msg) {
-	        stopwatchText.setText(formatStopWatchTime(elapsedTime)); //this is the textview
-	    }
-	};
-	
-	private String formatStopWatchTime(int elapsedSeconds) {
-		String timeText;
-		int hours = elapsedSeconds / 3600;
-		int minutes = elapsedSeconds / 60;
-		int seconds = elapsedSeconds / 1;
-		int displayMinutes = minutes % 60;
-		int displaySeconds = seconds % 60;
-		return String.format("%02d:%02d:%02d", hours, displayMinutes, displaySeconds);
-	}
-}
-

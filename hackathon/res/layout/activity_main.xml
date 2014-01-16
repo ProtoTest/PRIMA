@@ -17,7 +17,7 @@
         android:layout_weight=".35" >
 
         <ImageButton
-            android:id="@+id/button1"
+            android:id="@+id/rec_toggle_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
@@ -38,16 +38,17 @@
         android:layout_height="0dp"
         android:layout_weight=".15" >
 
-        <Button
-            android:id="@+id/button2"
+        <TextView
+            android:id="@+id/recording_status"
             style="@style/textstyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="38dp"
-            android:onClick="switchToGraph"
-            android:text="Look at Graph" />
+            android:text="@string/not_recording"
+            android:textSize="@dimen/timer_font_size" />
     </RelativeLayout>
+
 
     <View
         android:layout_width="match_parent"
@@ -73,26 +74,7 @@
     <View
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight=".05" />
+        android:layout_weight=".20" />
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight=".15" >
-
-        <TextView
-            android:id="@+id/recording_status"
-            style="@style/textstyle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:layout_centerHorizontal="true"
-            android:text="@string/not_recording"
-            android:textSize="@dimen/timer_font_size" />
-    </RelativeLayout>
-    <View
-        android:layout_width="wrap_content"
-        android:layout_height="0dp"
-        android:layout_weight=".05" />
 
 </LinearLayout>

@@ -63,7 +63,9 @@ public class SimpleXYPlotActivity extends Activity {
       plot.getGraphWidget().getBackgroundPaint().setColor(Color.WHITE);
       plot.getGraphWidget().getGridBackgroundPaint().setColor(Color.WHITE);
       plot.getLegendWidget().getTextPaint().setColor(Color.GRAY);
-      
+      plot.setDomainLabel("Seconds");
+      plot.setRangeLabel("Percent");
+           
 
       // Turn the above arrays into XYSeries':
       XYSeries series1 = new SimpleXYSeries(Arrays.asList(memStats), SimpleXYSeries.ArrayFormat.Y_VALS_ONLY, "Memory");

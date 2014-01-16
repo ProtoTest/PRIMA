@@ -1,7 +1,6 @@
 package com.prototest.prima;
 
 import android.app.Application;
-import android.content.ContentValues;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.OnSharedPreferenceChangeListener;
@@ -9,17 +8,12 @@ import android.content.res.Configuration;
 import android.preference.PreferenceManager;
 import android.util.Log;
 
-import com.prototest.prima.contentprovider.PrimaContentProvider;
-import com.prototest.prima.database.BATTStatsTable;
-import com.prototest.prima.database.CPUStatsTable;
-import com.prototest.prima.database.MEMStatsTable;
-
 public class PrimaApp extends Application implements OnSharedPreferenceChangeListener {
 
    static final String TAG = "PrimaApp";
-   static Context context;
+   private static Context context;
 
-   SharedPreferences prefs;
+   public static SharedPreferences prefs;
 
    public static Context getAppContext() {
       return PrimaApp.context;
@@ -35,30 +29,15 @@ public class PrimaApp extends Application implements OnSharedPreferenceChangeLis
    /* Some initialization stuff */
    @Override
    public void onCreate() {
-      Boolean db_seeded = false;
-
       super.onCreate();
       PrimaApp.context = getApplicationContext();
 
-      /* Login details, or whatever */
-      Log.d(TAG, "onCreate");
+      Log.d(TAG, "onCreate()");
 
       // Prefs stuff
       prefs = PreferenceManager.getDefaultSharedPreferences(this);
       prefs.registerOnSharedPreferenceChangeListener(this);
 
-      db_seeded = prefs.getBoolean("databaseSeeded", false);
-
-      Log.d(TAG, String.format("Database %s seeded", (db_seeded) ? "is" : "is NOT"));
-
-      if (!db_seeded) {
-         new Thread(new Runnable() {
-            public void run() {
-     
-            }
-         }).start();
-
-      }
       /*
        * You could get the prefs variable from any other class via:
        * ((PrimaApp)getApplication()).prefs.getInt("blah blah", defaultDELAY);
@@ -89,5 +68,4 @@ public class PrimaApp extends Application implements OnSharedPreferenceChangeLis
       /* Preferences changed, so update our instance variable */
       this.prefs = prefs;
    }
-
 }

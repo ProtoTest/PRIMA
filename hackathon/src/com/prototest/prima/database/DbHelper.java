@@ -13,11 +13,12 @@ public class DbHelper extends SQLiteOpenHelper {
 
    public DbHelper(Context context) {
       super(context, DB_NAME, null, DB_VERSION);
+      Log.d(TAG, "constructor");
    }
 
    @Override
    public void onCreate(SQLiteDatabase db) {
-      Log.d(TAG, "onCreate");
+      Log.d(TAG, "onCreate()");
       BATTStatsTable.onCreate(db);
       CPUStatsTable.onCreate(db);
       MEMStatsTable.onCreate(db);
@@ -25,7 +26,7 @@ public class DbHelper extends SQLiteOpenHelper {
 
    @Override
    public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-      Log.d(TAG, "onUpgrade");
+      Log.d(TAG, String.format("onUpgrade() from %d to %d", oldVersion, newVersion));
       BATTStatsTable.onUpgrade(db, oldVersion, newVersion);
       CPUStatsTable.onUpgrade(db, oldVersion, newVersion);
       MEMStatsTable.onUpgrade(db, oldVersion, newVersion);

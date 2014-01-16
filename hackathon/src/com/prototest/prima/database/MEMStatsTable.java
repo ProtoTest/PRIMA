@@ -10,16 +10,17 @@ public class MEMStatsTable {
    public static final String TABLE_MEM = "mem_stats";
    public static final String COLUMN_ID = BaseColumns._ID;
    public static final String COLUMN_CURRENT = "current";
-   public static final String COLUMN_MAX = "max";
    public static final String COLUMN_AVAILABLE = "available";
+   public static final String COLUMN_CREATED_AT = "created_at";
    private static final String NOT_NULL = "NOT NULL";
 
    private static final String CREATE_TABLE = String.format("CREATE TABLE %s "
-         + "(%s INTEGER PRIMARY KEY AUTOINCREMENT, %s INT %s, %s INT %s, %s INT %s)", TABLE_MEM,
-         COLUMN_ID, COLUMN_CURRENT, NOT_NULL, COLUMN_MAX, NOT_NULL, COLUMN_AVAILABLE, NOT_NULL);
+         + "(%s INTEGER PRIMARY KEY AUTOINCREMENT, %s INT %s, %s INT %s, %s DATETIME %s)",
+         TABLE_MEM, COLUMN_ID, COLUMN_CURRENT, NOT_NULL, COLUMN_AVAILABLE, NOT_NULL,
+         COLUMN_CREATED_AT, NOT_NULL);
 
    public static void onCreate(SQLiteDatabase db) {
-      Log.d(TAG, "onCreate with sql" + CREATE_TABLE);
+      Log.d(TAG, "onCreate with sql: " + CREATE_TABLE);
       db.execSQL(CREATE_TABLE);
    }
 

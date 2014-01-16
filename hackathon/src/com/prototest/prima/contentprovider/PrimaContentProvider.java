@@ -200,13 +200,14 @@ public class PrimaContentProvider extends ContentProvider {
 
    static {
       columnsAvailBATT = new String[] { BATTStatsTable.COLUMN_ID, BATTStatsTable.COLUMN_LEVEL,
-            BATTStatsTable.COLUMN_SCALE, BATTStatsTable.COLUMN_TEMP, BATTStatsTable.COLUMN_VOLTAGE };
+            BATTStatsTable.COLUMN_SCALE, BATTStatsTable.COLUMN_TEMP, BATTStatsTable.COLUMN_VOLTAGE,
+            BATTStatsTable.COLUMN_CREATED_AT };
 
       columnsAvailCPU = new String[] { CPUStatsTable.COLUMN_ID, CPUStatsTable.COLUMN_FREE,
-            CPUStatsTable.COLUMN_PERCENT_USED, CPUStatsTable.COLUMN_USED };
+            CPUStatsTable.COLUMN_USED, CPUStatsTable.COLUMN_CREATED_AT };
 
       columnsAvailMEM = new String[] { MEMStatsTable.COLUMN_ID, MEMStatsTable.COLUMN_AVAILABLE,
-            MEMStatsTable.COLUMN_CURRENT, MEMStatsTable.COLUMN_MAX };
+            MEMStatsTable.COLUMN_CURRENT, MEMStatsTable.COLUMN_CREATED_AT };
    }
 
    /**

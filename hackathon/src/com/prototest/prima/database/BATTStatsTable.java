@@ -15,15 +15,18 @@ public class BATTStatsTable {
    public static final String COLUMN_LEVEL = "level";
    public static final String COLUMN_VOLTAGE = "voltage";
    public static final String COLUMN_TEMP = "temp";
+   public static final String COLUMN_CREATED_AT = "created_at";
    private static final String NOT_NULL = "NOT NULL";
 
-   private static final String CREATE_TABLE = String.format("CREATE TABLE %s "
-         + "(%s INTEGER PRIMARY KEY AUTOINCREMENT, %s INT %s, %s INT %s, %s INT %s, %s INT %s)",
-         TABLE_BATT, COLUMN_ID, COLUMN_SCALE, NOT_NULL, COLUMN_LEVEL, NOT_NULL, COLUMN_VOLTAGE,
-         NOT_NULL, COLUMN_TEMP, NOT_NULL);
+   private static final String CREATE_TABLE = String
+         .format(
+               "CREATE TABLE %s "
+                     + "(%s INTEGER PRIMARY KEY AUTOINCREMENT, %s INT %s, %s INT %s, %s INT %s, %s INT %s, %s DATETIME %s)",
+               TABLE_BATT, COLUMN_ID, COLUMN_SCALE, NOT_NULL, COLUMN_LEVEL, NOT_NULL,
+               COLUMN_VOLTAGE, NOT_NULL, COLUMN_TEMP, NOT_NULL, COLUMN_CREATED_AT, NOT_NULL);
 
    public static void onCreate(SQLiteDatabase db) {
-      Log.d(TAG, "onCreate with sql" + CREATE_TABLE);
+      Log.d(TAG, "onCreate with sql: " + CREATE_TABLE);
       db.execSQL(CREATE_TABLE);
    }
 

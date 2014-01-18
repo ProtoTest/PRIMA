@@ -13,6 +13,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.View;
 import android.widget.ImageButton;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.prototest.prima.contentprovider.PrimaContentProvider;
@@ -33,6 +34,7 @@ public class MainActivity extends Activity {
    private int elapsedTime = 0;
    private TextView stopwatchText;
    private ImageButton recordingImageButton;
+   private View notificationLabel;
 
    @Override
    protected void onCreate(Bundle savedInstanceState) {
@@ -45,10 +47,20 @@ public class MainActivity extends Activity {
       try {
          processorMonitor = new SystemMonitor(new ProcessorStats());
       } catch (IOException e) {
+         Log.e(TAG, e.getMessage());
       }
 
       recordingLabel = (TextView) findViewById(R.id.recording_status);
       recordingImageButton = (ImageButton) findViewById(R.id.rec_toggle_button);
+      notificationLabel = (RelativeLayout) findViewById(R.id.notification);
+
+      if (!recording) {
+         stopwatchText.setVisibility(View.INVISIBLE);
+         notificationLabel.setVisibility(View.INVISIBLE);
+      } else {
+         stopwatchText.setVisibility(View.VISIBLE);
+         notificationLabel.setVisibility(View.VISIBLE);
+      }
    }
 
    @Override
@@ -84,8 +96,11 @@ public class MainActivity extends Activity {
       batteryMonitor.StartMonitoring();
       memoryMonitor.StartMonitoring();
       processorMonitor.StartMonitoring();
-      recordingLabel.setText(R.string.recording);
+      recordingLabel.setText(R.string.stop);
       recordingImageButton.setImageResource(R.drawable.stop);
+      stopwatchText.setVisibility(View.VISIBLE);
+      notificationLabel.setVisibility(View.VISIBLE);
+
    }
 
    private void stopRecording(View view) {
@@ -94,8 +109,10 @@ public class MainActivity extends Activity {
       batteryMonitor.StopMonitoring();
       memoryMonitor.StopMonitoring();
       processorMonitor.StopMonitoring();
-      recordingLabel.setText(R.string.not_recording);
+      recordingLabel.setText(R.string.start);
       recordingImageButton.setImageResource(R.drawable.start);
+      stopwatchText.setVisibility(View.INVISIBLE);
+      notificationLabel.setVisibility(View.INVISIBLE);
       switchToGraph(view);
    }
 

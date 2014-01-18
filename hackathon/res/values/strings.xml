@@ -4,7 +4,11 @@
     <string name="app_name">PRIMA</string>
     <string name="action_settings">Settings</string>
     <string name="hello_world">Hello world!</string>
-    <string name="recording">STOP Recording</string>
-    <string name="not_recording">START Recording</string>
+    <string name="stop">STOP</string>
+    <string name="start">START</string>
+    <string name="recording">recording</string>
+    <string name="recording_button_content_desc">Start/Stop Recording Button</string>
+    <string name="notification_text">OK, go use some apps.\n\ 
+        I\'ll record until you return.</string>
 
 </resources>

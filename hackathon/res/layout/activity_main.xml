@@ -22,10 +22,10 @@
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
             android:background="#FFFFFF"
+            android:contentDescription="@string/recording_button_content_desc"
             android:onClick="toggleRecording"
             android:scaleType="fitCenter"
-            android:src="@drawable/buttonaction"
-            android:text="Start Recording" />
+            android:src="@drawable/buttonaction" />
     </RelativeLayout>
 
     <View
@@ -43,12 +43,22 @@
             style="@style/textstyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:text="@string/start"
+            android:textColor="#444444"
+            android:textSize="@dimen/start_stop_font_size" />
+
+        <TextView
+            style="@style/textstyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
             android:layout_centerHorizontal="true"
-            android:text="@string/not_recording"
-            android:textSize="@dimen/timer_font_size" />
+            android:text="@string/recording"
+            android:textColor="#444444"
+            android:textSize="@dimen/recording_font_size" />
     </RelativeLayout>
-
 
     <View
         android:layout_width="match_parent"
@@ -61,20 +71,36 @@
         android:layout_weight=".05" >
 
         <TextView
-		android:id="@+id/stopwatch"
-    	android:layout_width="wrap_content"
-    	android:layout_height="wrap_content"
-    	android:layout_alignParentBottom="true"
-    	android:layout_centerInParent="true"
-    	android:text="00:00:00"
-     	style="@style/textstyle"
-    	android:textSize="@dimen/timer_font_size" />
-</RelativeLayout>
+            android:id="@+id/stopwatch"
+            style="@style/textstyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerInParent="true"
+            android:text="00:00:00"
+            android:textSize="@dimen/timer_font_size" />
+    </RelativeLayout>
 
     <View
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight=".20" />
+        android:layout_weight=".05" />
 
+    <RelativeLayout
+        android:id="@+id/notification"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight=".15"
+        android:background="#00a5ff" >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_gravity="center_vertical"
+            android:gravity="center"
+            android:text="@string/notification_text"
+            android:textColor="#ffffff" />
+    </RelativeLayout>
 
 </LinearLayout>

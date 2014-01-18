@@ -10,4 +10,7 @@
     <dimen name="range_tick_label_font_size">15dp</dimen>
     <dimen name="domain_tick_label_font_size">15dp</dimen>
     <dimen name="legend_text_font_size">20dp</dimen>
+    <dimen name="start_stop_font_size">30dp</dimen>
+    <dimen name="recording_font_size">20dp</dimen>
+    <dimen name="timer_font_size">20dp</dimen>
 </resources>

@@ -10,6 +10,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Color;
+import android.graphics.Paint;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
@@ -54,7 +55,8 @@ public class SimpleXYPlotActivity extends Activity {
             WindowManager.LayoutParams.FLAG_SECURE);
 
       setContentView(R.layout.simple_xy_plot_example);
-
+      
+   
       // initialize our XYPlot reference:
       plot = (XYPlot) findViewById(R.id.mySimpleXYPlot);
       plot.getBackgroundPaint().setColor(Color.WHITE);
@@ -64,6 +66,12 @@ public class SimpleXYPlotActivity extends Activity {
       plot.getLegendWidget().getTextPaint().setColor(Color.GRAY);
       plot.setDomainLabel("Seconds");
       plot.setRangeLabel("Percent");
+      Paint axisPaint = new Paint();
+      axisPaint.setColor(Color.GRAY);
+      plot.getDomainLabelWidget().setLabelPaint(axisPaint);
+      plot.getRangeLabelWidget().setLabelPaint(axisPaint);
+      
+      
 
       // Turn the above arrays into XYSeries':
       XYSeries series1 = new SimpleXYSeries(Arrays.asList(memStats),

@@ -12,13 +12,16 @@ import android.app.Activity;
 import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Color;
+import android.graphics.Matrix.ScaleToFit;
 import android.graphics.Paint;
+import android.graphics.Paint.Align;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.WindowManager;
 
+import com.androidplot.ui.PositionMetrics;
 import com.androidplot.xy.BoundaryMode;
 import com.androidplot.xy.LineAndPointFormatter;
 import com.androidplot.xy.PointLabelFormatter;
@@ -66,13 +69,14 @@ public class SimpleXYPlotActivity extends Activity {
       plot.getGraphWidget().getBackgroundPaint().setColor(Color.WHITE);
       plot.getGraphWidget().getGridBackgroundPaint().setColor(Color.WHITE);
       plot.getLegendWidget().getTextPaint().setColor(Color.GRAY);
-      plot.setDomainLabel("Seconds");
-      plot.setRangeLabel("Percent");
       Paint axisPaint = new Paint();
       axisPaint.setColor(Color.GRAY);
       axisPaint.setTextSize(50);
+      axisPaint.setTextAlign(Align.LEFT);
       plot.getDomainLabelWidget().setLabelPaint(axisPaint);
       plot.getRangeLabelWidget().setLabelPaint(axisPaint);
+      plot.getDomainLabelWidget().setWidth(500);
+      plot.getRangeLabelWidget().setHeight(500);    
            
       
 

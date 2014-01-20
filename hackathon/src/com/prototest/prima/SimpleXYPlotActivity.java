@@ -5,6 +5,8 @@ import java.text.Format;
 import java.text.NumberFormat;
 import java.util.Arrays;
 
+import org.w3c.dom.Text;
+
 import android.annotation.TargetApi;
 import android.app.Activity;
 import android.content.Intent;
@@ -68,9 +70,10 @@ public class SimpleXYPlotActivity extends Activity {
       plot.setRangeLabel("Percent");
       Paint axisPaint = new Paint();
       axisPaint.setColor(Color.GRAY);
+      axisPaint.setTextSize(50);
       plot.getDomainLabelWidget().setLabelPaint(axisPaint);
       plot.getRangeLabelWidget().setLabelPaint(axisPaint);
-      
+           
       
 
       // Turn the above arrays into XYSeries':

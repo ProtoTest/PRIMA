@@ -153,7 +153,6 @@ public class SimpleXYPlotActivity extends Activity {
       for (int i = 0; i < cursor.getCount(); i++) {
          double curr = cursor.getInt(1);
          double avail = cursor.getInt(2);
-         Log.d("SCREW YOU", "" + (curr / (curr + avail)) * 100);
          results[i] = (curr / (curr + avail)) * 100;
          cursor.moveToNext();
       }
@@ -171,7 +170,6 @@ public class SimpleXYPlotActivity extends Activity {
       for (int i = 0; i < cursor.getCount(); i++) {
          double used = cursor.getInt(1);
          double free = cursor.getInt(2);
-         Log.d("SCREW YOU", "" + (used / (used + free)) * 100);
          results[i] = (used / (used + free)) * 100;
          cursor.moveToNext();
       }
